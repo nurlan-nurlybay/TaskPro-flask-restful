@@ -1,0 +1,20 @@
+# ENVIRONMENT VARIABLES
+.env 
+
+# PERSONAL SETTINGS
+*.code-workspace
+
+# CACHE FILES
+__pycache__/
+
+# DATABASE FILES
+*.sqlite3
+*.db
+
+# VENV
+.venv/
+venv/
+
+# LOG FILES
+*.log.*
+logs/
