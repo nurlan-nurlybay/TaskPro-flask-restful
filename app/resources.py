@@ -47,6 +47,7 @@ class UserResource(Resource):
             db.session.commit()
             return user_schema.dump(updated_user), 200
         except ValidationError as err:
+            db.session.rollback()
             return error_response("validation_error", "Invalid data provided.", details=err.messages, status_code=422)
         except IntegrityError:
             db.session.rollback()
@@ -94,6 +95,7 @@ class UserListResource(Resource):
             db.session.commit()
             return user_schema.dump(new_user), 201
         except ValidationError as err:
+            db.session.rollback()
             return error_response("validation_error", "Creation failed.", details=err.messages, status_code=422)
         except IntegrityError:
             db.session.rollback()
@@ -160,6 +162,7 @@ class TaskResource(Resource):
             db.session.commit()
             return task_schema.dump(updated_task), 200
         except ValidationError as err:
+            db.session.rollback()
             return error_response("validation_error", "Update failed.", details=err.messages, status_code=422)
         except Exception as e:
             db.session.rollback()
